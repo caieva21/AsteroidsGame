@@ -1,15 +1,31 @@
-//your variable declarations here
+SpaceShip Turd = new Spaceship();
 public void setup() 
 {
   //your code here
 }
 public void draw() 
 {
-  //your code here
+  Turd.show();
 }
-class SpaceShip //extends Floater  
+class SpaceShip extends floater 
 {   
-    //your code here
+    int corners = 7;
+    xCorners = new int [corners];
+    yCorners = new int [corners];
+    xCorners[0} = -10;
+    yCorners[0] = 4;
+    xCorners[1] = -10;
+    yCorners[1] = -4;
+    xCorners[2] = 9;
+    yCorners[2] = -4;
+    xCorners[3] = 9;
+    yCorners[3] = 4;
+    xCorners[4] = 9;
+    yCorners[4] = -6;
+    xCorners[5] = 9;
+    yCorners[5] = 6;
+    xCorners[6] = 17;
+    yCorners[6] = 0;
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -87,4 +103,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
