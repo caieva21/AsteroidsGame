@@ -1,4 +1,4 @@
-SpaceShip Turd = new Spaceship();
+SpaceShip Turd = new SpaceShip();
 public void setup() 
 {
 }
@@ -6,9 +6,15 @@ public void draw()
 {
   Turd.show();
 }
-class SpaceShip extends floater 
+public class SpaceShip extends Floater 
 {   
-  int corners = 7;
+  public SpaceShip (){
+    myColor = 0;
+    corners = 7;
+    setX(0);
+    setY(0);
+    setPointDirection(0);
+    
     xCorners = new int [corners];
     yCorners = new int [corners];
     xCorners[0]= -10;
@@ -25,19 +31,24 @@ class SpaceShip extends floater
     yCorners[5] = 6;
     xCorners[6] = 17;
     yCorners[6] = 0;
-  public void SpaceShip()
-  {    
+    for (int i = 0; i<7; i++)
+    xCorners[i] = (int) myDirectionX;
+    for (int i = 0; i<7; i++)
+    yCorners[i] = (int) myDirectionY;
+  }
+  public void show() {
+  }
+  
     public void setX (int x) {myCenterX = x;}
-    public int getX() {return myCenterX;} 
+    public int getX() {return (int) myCenterX;} 
     public void setY (int y) {myCenterY = y;}
-    public int getY () {return myCenterY:}
+    public int getY () {return(int) myCenterY;}
     public void setDirectionX (double x) {myDirectionX = x;}
     public double getDirectionX() {return myDirectionX;}
     public void setDirectionY (double y) {myDirectionY = y;}
     public double getDirectionY() {return myDirectionY;}
     public void setPointDirection (int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
-  }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
