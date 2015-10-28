@@ -1,42 +1,41 @@
-SpaceShip Turd = new SpaceShip();
+SpaceShip Turd;
 public void setup() 
 {
+  size (800,800);
+  Turd = new SpaceShip();
 }
 public void draw() 
 {
+  background (255);
   Turd.show();
 }
 public class SpaceShip extends Floater 
 {   
+  
   public SpaceShip (){
     myColor = 0;
     corners = 7;
-    setX(0);
-    setY(0);
-    setPointDirection(0);
+    myCenterX = 400;
+    myCenterY = 400;
+    myPointDirection = 0;
+    int [] xS = { -10, -10, 9, 9, 9, 9, 17};
+    int [] yS = {4, -4, -4, 4, -6, 6, 0};
+   
+    for (int i = 0; i < xS.length; i++)
+    {
+    xS = myDirectionX;
+    }
+    xCorners = xS;
+    for (int i = 0; i < yS.length; i++)
+    {
+    yS = myDirectionY;
+    }
+    yCorners = yS;
     
-    xCorners = new int [corners];
-    yCorners = new int [corners];
-    xCorners[0]= -10;
-    yCorners[0] = 4;
-    xCorners[1] = -10;
-    yCorners[1] = -4;
-    xCorners[2] = 9;
-    yCorners[2] = -4;
-    xCorners[3] = 9;
-    yCorners[3] = 4;
-    xCorners[4] = 9;
-    yCorners[4] = -6;
-    xCorners[5] = 9;
-    yCorners[5] = 6;
-    xCorners[6] = 17;
-    yCorners[6] = 0;
-    for (int i = 0; i<7; i++)
-    xCorners[i] = (int) myDirectionX;
-    for (int i = 0; i<7; i++)
-    yCorners[i] = (int) myDirectionY;
-  }
-  public void show() {
+    
+  }      
+  public void show() 
+  {
   }
   
     public void setX (int x) {myCenterX = x;}
