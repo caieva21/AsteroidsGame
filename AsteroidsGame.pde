@@ -6,38 +6,30 @@ public void setup()
 }
 public void draw() 
 {
+  size(400,400);
   background (255);
   Turd.show();
 }
 public class SpaceShip extends Floater 
 {   
-  
   public SpaceShip (){
     myColor = 0;
     corners = 7;
-    myCenterX = 400;
-    myCenterY = 400;
+    myCenterX = 200;
+    myCenterY = 200;
     myPointDirection = 0;
-    int [] xS = { -10, -10, 9, 9, 9, 9, 17};
-    int [] yS = {4, -4, -4, 4, -6, 6, 0};
-   
-    for (int i = 0; i < xS.length; i++)
-    {
-    xS = myDirectionX;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    int[] xS = { -10, -10, 9, 9, 17, 9, 9};   
+    for(int i = 0; i < xS.length; i++){
+    xS[i]+= myDirectionX;
     }
     xCorners = xS;
-    for (int i = 0; i < yS.length; i++)
-    {
-    yS = myDirectionY;
-    }
+    int[] yS = {4, -4, -4, -6, -0, 6, 4};
+    for(int i = 0; i < yS.length; i++){
     yCorners = yS;
-    
-    
-  }      
-  public void show() 
-  {
+  }          
   }
-  
     public void setX (int x) {myCenterX = x;}
     public int getX() {return (int) myCenterX;} 
     public void setY (int y) {myCenterY = y;}
