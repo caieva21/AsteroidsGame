@@ -1,17 +1,42 @@
 SpaceShip Turd;
 public void setup() 
 {
-  size (800,800);
+  size (800, 800);
   Turd = new SpaceShip();
 }
 public void draw() 
 {
-  size(400,400);
+  size(800,800);
   background (255);
   Turd.show();
+  Turd.move();
+  
+  if (Turd.faster) {Turd.accelerate(0.2);}
+  if (Turd.slower) {Turd.accelerate(-0.2);}
+  if (Turd.rTurn) {Turd.rotate(10);}
+  if (Turd.lTurn) {Turd.rotate(-10);}
+  if (Turd.hyper) 
+  {
+    Turd.setX((int)Math.random()*800);
+    Turd.setY((int)Math.random()*800);
+  }
+  
+}
+public void keyPressed () 
+{
+  if (key == 'w'){Turd.faster = true;}
+  if (key == 'd'){Turd.rTurn = true;}
+  if (key == 's'){Turd.slower = true;}
+  if (key == 'a'){Turd.lTurn = true;}
+  if (key == 'q'){Turd.hyper = true;}
+}
+public void keyReleased ()
+{
+  
 }
 public class SpaceShip extends Floater 
 {   
+  boolean faster, slower, rTurn, lTurn, hyper;
   public SpaceShip (){
     myColor = 0;
     corners = 7;
@@ -20,6 +45,13 @@ public class SpaceShip extends Floater
     myPointDirection = 0;
     myDirectionX = 0;
     myDirectionY = 0;
+    
+    faster = false;
+    slower = false;
+    rTurn = false;
+    lTurn = false;
+    hyper = false;
+    
     int[] xS = { -10, -10, 9, 9, 17, 9, 9};   
     for(int i = 0; i < xS.length; i++){
     xS[i]+= myDirectionX;
