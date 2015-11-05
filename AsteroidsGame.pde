@@ -11,12 +11,16 @@ public void draw()
   Turd.show();
   Turd.move();
   
-  if (Turd.faster) {Turd.accelerate(0.2);}
-  if (Turd.slower) {Turd.accelerate(-0.2);}
+  if (Turd.faster) {Turd.accelerate(0.1);}
+  else if (Turd.slower) {Turd.accelerate(-0.1);}
+  else {Turd.accelerate(0);}
+  
   if (Turd.rTurn) {Turd.rotate(10);}
-  if (Turd.lTurn) {Turd.rotate(-10);}
+  else if (Turd.lTurn) {Turd.rotate(-10);}
   if (Turd.hyper) 
   {
+    Turd.setDirectionX(0);
+    Turd.setDirectionY(0);
     Turd.setX((int)Math.random()*800);
     Turd.setY((int)Math.random()*800);
   }
@@ -29,10 +33,37 @@ public void keyPressed ()
   if (key == 's'){Turd.slower = true;}
   if (key == 'a'){Turd.lTurn = true;}
   if (key == 'q'){Turd.hyper = true;}
+  /*if (key == ' ')
+    {
+    Turd.accelerate(-Turd.getDirectionX());
+    Turd.accelerate(-Turd.getDirectionY());
+    }*/
 }
 public void keyReleased ()
 {
-  
+   if (key == 'w'){Turd.faster = false;}
+  if (key == 'd'){Turd.rTurn = false;}
+  if (key == 's'){Turd.slower = false;}
+  if (key == 'a'){Turd.lTurn = false;}
+  if (key == 'q'){Turd.hyper = false;}
+  if (key == ' ')
+    {
+    if (Turd.getDirectionX() >= 0 && Turd.getDirectionX() <= 45 || Turd.getDirectionX() <=360 && Turd.getDirectionX() >= 270)
+    {
+      Turd.accelerate(-Turd.getDirectionX());
+    }else 
+    {
+      Turd.accelerate(Turd.getDirectionX());
+    }
+    
+    if (Turd.getDirectionY() >= 0)
+    {
+    Turd.accelerate(Turd.getDirectionY());
+    } else
+    {
+      Turd.accelerate (-Turd.getDirectionY());
+    }
+    }
 }
 public class SpaceShip extends Floater 
 {   
@@ -146,4 +177,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
     endShape(CLOSE);
   }
-} 
