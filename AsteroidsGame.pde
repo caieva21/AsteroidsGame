@@ -7,7 +7,7 @@ public void setup()
 public void draw() 
 {
   size(800,800);
-  background (255);
+  background (0);
   Turd.show();
   Turd.move();
   
@@ -17,6 +17,7 @@ public void draw()
   
   if (Turd.rTurn) {Turd.rotate(10);}
   else if (Turd.lTurn) {Turd.rotate(-10);}
+  else {Turd.rotate (0);}
   if (Turd.hyper) 
   {
     Turd.setDirectionX(0);
@@ -48,7 +49,7 @@ public void keyReleased ()
   if (key == 'q'){Turd.hyper = false;}
   if (key == ' ')
     {
-    if (Turd.getDirectionX() >= 0 && Turd.getDirectionX() <= 45 || Turd.getDirectionX() <=360 && Turd.getDirectionX() >= 270)
+    if (Turd.getDirectionX() >= 0 && Turd.getDirectionX() <= 90 || Turd.getDirectionX() <=360 && Turd.getDirectionX() >= 270)
     {
       Turd.accelerate(-Turd.getDirectionX());
     }else 
@@ -69,7 +70,7 @@ public class SpaceShip extends Floater
 {   
   boolean faster, slower, rTurn, lTurn, hyper;
   public SpaceShip (){
-    myColor = 0;
+    myColor = 255;
     corners = 7;
     myCenterX = 200;
     myCenterY = 200;
