@@ -1,8 +1,10 @@
 SpaceShip Turd;
+Stars[] Poo = new Stars[500];
 public void setup() 
 {
   size (800, 800);
   Turd = new SpaceShip();
+  for (int i = 0; i < Poo.length; i++) {Poo [i] = new Stars();}
 }
 public void draw() 
 {
@@ -25,7 +27,7 @@ public void draw()
     Turd.setX((int)Math.random()*800);
     Turd.setY((int)Math.random()*800);
   }
-  
+  for (int i = 0; i < Poo.length; i++) {Poo[i].show();}
 }
 public void keyPressed () 
 {
@@ -49,22 +51,26 @@ public void keyReleased ()
   if (key == 'q'){Turd.hyper = false;}
   if (key == ' ')
     {
-    if (Turd.getDirectionX() >= 0 && Turd.getDirectionX() <= 90 || Turd.getDirectionX() <=360 && Turd.getDirectionX() >= 270)
-    {
-      Turd.accelerate(-Turd.getDirectionX());
-    }else 
-    {
-      Turd.accelerate(Turd.getDirectionX());
+      Turd.accelerate(dAmount) = Turd.accelerate (-dAmount);   
     }
-    
-    if (Turd.getDirectionY() >= 0)
-    {
-    Turd.accelerate(Turd.getDirectionY());
-    } else
-    {
-      Turd.accelerate (-Turd.getDirectionY());
-    }
-    }
+}
+
+public class Stars 
+{
+  private int x, y, color1, color2, color3;
+  
+  public Stars ()
+  {
+    x = (int)(Math.random()*800);
+    y = (int)(Math.random()*800);
+    color1 = 255;
+  }
+  public void show()
+  {
+    stroke(color1);
+    strokeWeight (2);
+    point (x,y);
+  }
 }
 public class SpaceShip extends Floater 
 {   
