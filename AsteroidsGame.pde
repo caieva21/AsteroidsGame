@@ -13,6 +13,11 @@ public void draw()
   Turd.show();
   Turd.move();
   
+  if (Turd.braking) 
+    {
+    Turd.setMyDirectionX(Turd.getDirectionX()*.8);
+    Turd.setMyDirectionY(Turd.getDirectionY()*.8);
+    }
   if (Turd.faster) {Turd.accelerate(0.1);}
   else if (Turd.slower) {Turd.accelerate(-0.1);}
   else {Turd.accelerate(0);}
@@ -36,11 +41,10 @@ public void keyPressed ()
   if (key == 's'){Turd.slower = true;}
   if (key == 'a'){Turd.lTurn = true;}
   if (key == 'q'){Turd.hyper = true;}
-  /*if (key == ' ')
+  if (key == ' ')
     {
-    Turd.accelerate(-Turd.getDirectionX());
-    Turd.accelerate(-Turd.getDirectionY());
-    }*/
+    Turd.braking = true;
+    }
 }
 public void keyReleased ()
 {
@@ -50,9 +54,9 @@ public void keyReleased ()
   if (key == 'a'){Turd.lTurn = false;}
   if (key == 'q'){Turd.hyper = false;}
   if (key == ' ')
-    {
-      Turd.accelerate(dAmount) = Turd.accelerate (-dAmount);   
-    }
+   {
+     Turd.braking = false;
+   }
 }
 
 public class Stars 
@@ -74,7 +78,7 @@ public class Stars
 }
 public class SpaceShip extends Floater 
 {   
-  boolean faster, slower, rTurn, lTurn, hyper;
+  private boolean faster, slower, rTurn, lTurn, hyper, braking;
   public SpaceShip (){
     myColor = 255;
     corners = 7;
