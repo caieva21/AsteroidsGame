@@ -15,8 +15,8 @@ public void draw()
   
   if (Turd.braking) 
     {
-    Turd.setMyDirectionX(Turd.getDirectionX()*.8);
-    Turd.setMyDirectionY(Turd.getDirectionY()*.8);
+    Turd.setDirectionX(Turd.getDirectionX()*.8);
+    Turd.setDirectionY(Turd.getDirectionY()*.8);
     }
   if (Turd.faster) {Turd.accelerate(0.1);}
   else if (Turd.slower) {Turd.accelerate(-0.1);}
