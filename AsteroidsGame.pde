@@ -1,10 +1,12 @@
 SpaceShip Turd;
 Stars[] Poo = new Stars[500];
+Astroid [] Chicken = new Astroid [10];
 public void setup() 
 {
   size (800, 800);
   Turd = new SpaceShip();
   for (int i = 0; i < Poo.length; i++) {Poo [i] = new Stars();}
+  for (int i = 0; i < Chicken.length; i++) {Chicken [i] = new Astroid();}
 }
 public void draw() 
 {
@@ -33,6 +35,7 @@ public void draw()
     Turd.setY((int)Math.random()*800);
   }
   for (int i = 0; i < Poo.length; i++) {Poo[i].show();}
+  for (int i = 0; i < Chicken.length; i++) {Chicken[i].show();}
 }
 public void keyPressed () 
 {
@@ -75,6 +78,40 @@ public class Stars
     strokeWeight (2);
     point (x,y);
   }
+}
+public class Astroid extends Floater
+{
+  private int size;
+  public Astroid ()
+  {
+    size = (int)(Math.random()*20) + 10;
+    myColor = 255;
+    myCenterX = (int)(Math.random()*800);
+    myCenterY = (int)(Math.random()*800);
+    corners  = 4;
+    myPointDirection = 0;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    
+    int[] xS = {-2,2,2,-2 };   
+    for(int i = 0; i < xS.length; i++){
+    xS[i]+= myDirectionX;
+    }
+    xCorners = xS;
+    int[] yS = {2,-2,-2,2};
+    for(int i = 0; i < yS.length; i++){
+    yCorners = yS; }
+  }
+    public void setX (int x) {myCenterX = x;}
+    public int getX() {return (int) myCenterX;} 
+    public void setY (int y) {myCenterY = y;}
+    public int getY () {return(int) myCenterY;}
+    public void setDirectionX (double x) {myDirectionX = x;}
+    public double getDirectionX() {return myDirectionX;}
+    public void setDirectionY (double y) {myDirectionY = y;}
+    public double getDirectionY() {return myDirectionY;}
+    public void setPointDirection (int degrees) {myPointDirection = degrees;}
+    public double getPointDirection() {return myPointDirection;}
 }
 public class SpaceShip extends Floater 
 {   
