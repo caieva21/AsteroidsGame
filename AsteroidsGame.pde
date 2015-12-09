@@ -7,6 +7,7 @@ public void setup()
   Turd = new SpaceShip();
   for (int i = 0; i < Poo.length; i++) {Poo [i] = new Stars();}
   for (int i = 0; i < Chicken.length; i++) {Chicken [i] = new Astroid();}
+  for (int i = 0; i < Chicken.length; i++) {Chicken[i].show();}
 }
 public void draw() 
 {
@@ -35,7 +36,8 @@ public void draw()
     Turd.setY((int)Math.random()*800);
   }
   for (int i = 0; i < Poo.length; i++) {Poo[i].show();}
-  for (int i = 0; i < Chicken.length; i++) {Chicken[i].show();}
+
+  
 }
 public void keyPressed () 
 {
@@ -81,27 +83,37 @@ public class Stars
 }
 public class Astroid extends Floater
 {
-  private int size;
+  protected int size, rotDirection, myColor1, myColor2, myColor3;
   public Astroid ()
   {
-    size = (int)(Math.random()*20) + 10;
-    myColor = 255;
+    myColor1 = 39;
+    myColor2 = 224;
+    myColor3 = 27;
     myCenterX = (int)(Math.random()*800);
     myCenterY = (int)(Math.random()*800);
-    corners  = 4;
+    //corners  = 4;
     myPointDirection = 0;
     myDirectionX = 0;
     myDirectionY = 0;
     
-    int[] xS = {-2,2,2,-2 };   
+   /* int[] xS = {-5,5,5,-5 };   
     for(int i = 0; i < xS.length; i++){
     xS[i]+= myDirectionX;
     }
     xCorners = xS;
-    int[] yS = {2,-2,-2,2};
+    int[] yS = {5,-5,-5,5};
     for(int i = 0; i < yS.length; i++){
-    yCorners = yS; }
+    yCorners = yS; }*/
   }
+    public void show()
+    {
+      stroke (myColor1, myColor2, myColor3);
+      noFill();
+      rect ((int)(Math.random()*800)+1, (int)(Math.random()*800),10,10);
+    }
+    public void move()
+    {
+    }
     public void setX (int x) {myCenterX = x;}
     public int getX() {return (int) myCenterX;} 
     public void setY (int y) {myCenterY = y;}
@@ -139,8 +151,9 @@ public class SpaceShip extends Floater
     int[] yS = {4, -4, -4, -6, -0, 6, 4};
     for(int i = 0; i < yS.length; i++){
     yCorners = yS;
-  }          
+    }  
   }
+   
     public void setX (int x) {myCenterX = x;}
     public int getX() {return (int) myCenterX;} 
     public void setY (int y) {myCenterY = y;}
