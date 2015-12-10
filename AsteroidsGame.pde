@@ -7,7 +7,6 @@ public void setup()
   Turd = new SpaceShip();
   for (int i = 0; i < Poo.length; i++) {Poo [i] = new Stars();}
   for (int i = 0; i < Chicken.length; i++) {Chicken [i] = new Astroid();}
-  for (int i = 0; i < Chicken.length; i++) {Chicken[i].show();}
 }
 public void draw() 
 {
@@ -36,7 +35,7 @@ public void draw()
     Turd.setY((int)Math.random()*800);
   }
   for (int i = 0; i < Poo.length; i++) {Poo[i].show();}
-
+  for (int i = 0;  i < Chicken.length; i ++) {Chicken[i].show();}
   
 }
 public void keyPressed () 
@@ -83,12 +82,11 @@ public class Stars
 }
 public class Astroid extends Floater
 {
+  
   protected int size, rotDirection, myColor1, myColor2, myColor3;
   public Astroid ()
   {
-    myColor1 = 39;
-    myColor2 = 224;
-    myColor3 = 27;
+    myColor = color(39,224,27);
     myCenterX = (int)(Math.random()*800);
     myCenterY = (int)(Math.random()*800);
     //corners  = 4;
@@ -107,7 +105,6 @@ public class Astroid extends Floater
   }
     public void show()
     {
-      stroke (myColor1, myColor2, myColor3);
       noFill();
       rect ((int)(Math.random()*800)+1, (int)(Math.random()*800),10,10);
     }
