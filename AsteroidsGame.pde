@@ -1,12 +1,12 @@
 SpaceShip Turd;
 Stars[] Poo = new Stars[500];
-Astroid [] Chicken = new Astroid [10];
+ArrayList <Asteroid> Chicken = new ArrayList<Asteroid>();
 public void setup() 
 {
   size (800, 800);
   Turd = new SpaceShip();
   for (int i = 0; i < Poo.length; i++) {Poo [i] = new Stars();}
-  for (int i = 0; i < Chicken.length; i++) {Chicken [i] = new Astroid();}
+  for(int i = 0; i < 15; i++){Chicken.add(new Asteroid());}
 }
 public void draw() 
 {
@@ -35,9 +35,14 @@ public void draw()
     Turd.setY((int)Math.random()*800);
   }
   for (int i = 0; i < Poo.length; i++) {Poo[i].show();}
-  for (int i = 0;  i < Chicken.length; i ++) {Chicken[i].show();}
-  
+  for (int i = 0; i< Chicken.size(); i++)
+  {
+    Chicken.get(i).show();
+    Chicken.get(i).move();
+  }
+ 
 }
+
 public void keyPressed () 
 {
   if (key == 'w'){Turd.faster = true;}
@@ -80,37 +85,72 @@ public class Stars
     point (x,y);
   }
 }
-public class Astroid extends Floater
+public class Asteroid extends Floater
 {
   
-  protected int size, rotDirection, myColor1, myColor2, myColor3;
-  public Astroid ()
+  protected int size, rotDirection;
+  public Asteroid ()
   {
-    myColor = color(39,224,27);
+    size = 2;
+    rotDirection = (int)(Math.random()*15)-5;
+    myColor = color(70,255,32);
     myCenterX = (int)(Math.random()*800);
     myCenterY = (int)(Math.random()*800);
-    //corners  = 4;
-    myPointDirection = 0;
+    corners  = 4;
+    myPointDirection = Math.random()*360;
     myDirectionX = 0;
     myDirectionY = 0;
     
-   /* int[] xS = {-5,5,5,-5 };   
-    for(int i = 0; i < xS.length; i++){
-    xS[i]+= myDirectionX;
-    }
+    noFill();
+    int[] xS = {10,-10,-10,10};   
+    for(int i = 0; i < xS.length; i++){xS[i]+= myDirectionX;}
     xCorners = xS;
-    int[] yS = {5,-5,-5,5};
-    for(int i = 0; i < yS.length; i++){
-    yCorners = yS; }*/
-  }
-    public void show()
-    {
-      noFill();
-      rect ((int)(Math.random()*800)+1, (int)(Math.random()*800),10,10);
-    }
+    int[] yS = {-10,-10,10,10};
+    for(int i = 0; i < yS.length; i++){yS[i]+= myDirectionY; }
+    yCorners = yS;
+  } 
     public void move()
     {
+      rotate(rotDirection);
+      myCenterX += myDirectionX;    
+      myCenterY += myDirectionY;     
+
+     
+      if(myCenterX >width)
+      {     
+        myCenterX = 0;    
+      }    
+      else if (myCenterX<0)
+      {     
+        myCenterX = width;    
+      }    
+      if(myCenterY >height)
+      {    
+        myCenterY = 0;    
+      }   
+      else if (myCenterY < 0)
+      {     
+        myCenterY = height;    
+      } 
     }
+      public void show ()  //Draws the floater at the current position  
+  {             
+    noFill();   
+    stroke(myColor);    
+    //convert degrees to radians for sin and cos         
+    double dRadians = myPointDirection*(Math.PI/180);                 
+    int xRotatedTranslated, yRotatedTranslated;    
+    beginShape();         
+    for (int nI = 0; nI < corners; nI++)    
+    {     
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated, yRotatedTranslated);
+    }   
+    endShape(CLOSE);
+  }
+  
     public void setX (int x) {myCenterX = x;}
     public int getX() {return (int) myCenterX;} 
     public void setY (int y) {myCenterY = y;}
