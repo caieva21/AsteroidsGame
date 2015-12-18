@@ -35,10 +35,20 @@ public void draw()
     Turd.setY((int)Math.random()*800);
   }
   for (int i = 0; i < Poo.length; i++) {Poo[i].show();}
-  for (int i = 0; i< Chicken.size(); i++)
+  //for (int i = 0; i< Chicken.size(); i++)
+  //{
+    //Chicken.get(i).show();
+   // Chicken.get(i).move();
+  //}
+  
+  for(int i = 0; i< Chicken.size();i++)
   {
+    if(dist(Turd.getX(),Turd.getY(), Chicken.get(i).getX(),Chicken.get(i).getY())<40){
+    Chicken.remove(i);}
+    else{
     Chicken.get(i).show();
     Chicken.get(i).move();
+    }
   }
  
 }
@@ -84,6 +94,29 @@ public class Stars
     strokeWeight (2);
     point (x,y);
   }
+}
+public class Bullet extends Floater
+{
+  public Bullet (SpaceShip ship){
+    myCenterX = ship.getX();
+    myCenterY = ship.getY();
+    myPointDirection = ship.getPointDirection();
+    double dRadians = myPointDirection*(Math.PI/180);
+    myDirectionX = 5* Math.cos(dRadians)+ ship.getX();
+    myDirectionY = 5*Math.sin(dRadians)+ ship.getY();
+    
+  }
+    public void setX (int x) {myCenterX = x;}
+    public int getX() {return (int) myCenterX;} 
+    public void setY (int y) {myCenterY = y;}
+    public int getY () {return(int) myCenterY;}
+    public void setDirectionX (double x) {myDirectionX = x;}
+    public double getDirectionX() {return myDirectionX;}
+    public void setDirectionY (double y) {myDirectionY = y;}
+    public double getDirectionY() {return myDirectionY;}
+    public void setPointDirection (int degrees) {myPointDirection = degrees;}
+    public double getPointDirection() {return myPointDirection;}
+  
 }
 public class Asteroid extends Floater
 {
